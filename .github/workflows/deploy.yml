@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  # 强制使用Node.js 24，避免弃用警告
+  # 使用Node.js 24运行actions
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
@@ -18,31 +18,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: Setup Node.js 20 for application
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # 应用使用Node.js 20，但actions使用Node.js 24
+          node-version: '20'
           cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
       
       - name: Install dependencies
-        run: npm ci
+        run: |
+          # 确保有package-lock.json
+          if [ ! -f "package-lock.json" ]; then
+            echo "Generating package-lock.json..."
+            npm init -y
+            npm install next@13.5.6 react@18.2.0 react-dom@18.2.0 --save
+            npm install tailwindcss@3.3.0 autoprefixer@10.4.0 postcss@8.4.0 --save-dev
+          fi
+          npm ci --no-audit
       
-      - name: Build
+      - name: Build Next.js application
         run: npm run build
+        env:
+          NODE_ENV: production
       
-      - name: Export
+      - name: Export static site
         run: npm run export
       
-      - name: Setup Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+          retention-days: 1
   
   deploy:
     environment:
@@ -54,3 +66,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      
+      - name: Verify deployment
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌐 Website URL: https://singletreelot.github.io/singletreelot-website/"
+          echo "📅 Deployed at: $(date)"
+          echo "🔧 Node.js version: 20 (app) / 24 (actions)"
