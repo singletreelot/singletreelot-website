@@ -37,7 +37,7 @@ export default function Home() {
       </nav>
 
       {/* 英雄区域 */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#5D4037] via-[#6B8E23] to-[#7CB342]">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="text-center">
