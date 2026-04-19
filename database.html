@@ -6,32 +6,402 @@
     <title>咖啡树数据库 - Single Tree Lot</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tree-card {
+            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .tree-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #7CB342;
+        }
+        
+        .flavor-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #FEF3C7;
+            color: #92400E;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin: 0.125rem;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-certified {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .status-pending {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .status-monitoring {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+    </style>
 </head>
 <body>
+    <!-- 导航 -->
     <nav class="bg-white shadow">
         <div class="container py-4">
-            <a href="index.html" class="inline-flex items-center text-[#5D4037] hover:text-[#7CB342]">
-                <i class="fas fa-arrow-left mr-2"></i>
-                返回首页
-            </a>
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="inline-flex items-center text-[#5D4037] hover:text-[#7CB342]">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    返回首页
+                </a>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-database mr-1"></i>
+                    咖啡树数据库
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="container py-12">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">咖啡树数据库</h1>
-            <p class="text-xl text-gray-600">建设中，即将上线</p>
+    <!-- 页面标题 -->
+    <section class="gradient-primary text-white">
+        <div class="container py-12">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">咖啡树数据库</h1>
+                <p class="text-xl max-w-3xl mx-auto">
+                    探索全球单株咖啡树，每棵树都有其独特的故事、风味和生长记录。
+                </p>
+            </div>
         </div>
-        
-        <div class="bg-gray-50 rounded-xl p-8 text-center">
-            <i class="fas fa-database text-5xl text-gray-400 mb-6"></i>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">全球单株咖啡树数据库</h2>
-            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-                正在构建全球首个单株咖啡树数据库，每棵树独立编号，完整追溯记录。
-                预计上线时间：2026年4月20日
-            </p>
-            <a href="index.html" class="btn btn-primary">返回首页</a>
+    </section>
+
+    <!-- 数据库统计 -->
+    <section class="bg-white py-8">
+        <div class="container">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-50 p-6 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-[#5D4037] mb-2">1,247</div>
+                    <div class="text-gray-600">总咖啡树数</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-[#5D4037] mb-2">892</div>
+                    <div class="text-gray-600">已认证树木</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-[#5D4037] mb-2">18</div>
+                    <div class="text-gray-600">产地国家</div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center">
+                    <div class="text-3xl font-bold text-[#5D4037] mb-2">42</div>
+                    <div class="text-gray-600">独特风味</div>
+                </div>
+            </div>
         </div>
-    </main>
-</body>
-</html>
+    </section>
+
+    <!-- 搜索和筛选 -->
+    <section class="py-8 bg-gray-50">
+        <div class="container">
+            <div class="bg-white rounded-xl shadow p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input
+                                type="text"
+                                placeholder="搜索咖啡树编号、名称或产地..."
+                                class="w-full px-4 py-3 pl-12 rounded-lg border border-gray-300 focus:border-[#7CB342] focus:ring-2 focus:ring-[#7CB342]/20"
+                                id="search-input"
+                            />
+                            <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <select class="px-4 py-3 rounded-lg border border-gray-300 bg-white" id="status-filter">
+                            <option value="">所有状态</option>
+                            <option value="certified">已认证</option>
+                            <option value="pending">认证中</option>
+                            <option value="monitoring">监测中</option>
+                        </select>
+                        <select class="px-4 py-3 rounded-lg border border-gray-300 bg-white" id="region-filter">
+                            <option value="">所有产地</option>
+                            <option value="china">中国</option>
+                            <option value="ethiopia">埃塞俄比亚</option>
+                            <option value="colombia">哥伦比亚</option>
+                            <option value="brazil">巴西</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 咖啡树列表 -->
+    <section class="py-8">
+        <div class="container">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="tree-list">
+                <!-- 咖啡树卡片将通过JavaScript动态生成 -->
+            </div>
+            
+            <!-- 分页 -->
+            <div class="mt-12 flex justify-center">
+                <nav class="flex items-center space-x-2">
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" id="prev-page">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="px-4 py-2 bg-[#7CB342] text-white rounded-lg font-semibold">1</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">2</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">3</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" id="next-page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据库说明 -->
+    <section class="py-12 bg-gray-50">
+        <div class="container">
+            <div class="bg-white rounded-xl shadow p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">关于咖啡树数据库</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">数据来源</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>认证种植者直接提交</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>现场审核团队验证</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>年度更新和维护</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>第三方实验室检测</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">数据用途</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>咖啡追溯验证</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>风味研究和匹配</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>可持续性评估</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-[#7CB342] mt-1 mr-3"></i>
+                                <span>市场透明化</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-6 bg-[#7CB342]/10 border border-[#7CB342]/20 rounded-xl">
+                    <div class="flex items-center">
+                        <i class="fas fa-info-circle text-[#7CB342] text-2xl mr-4"></i>
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-1">数据访问权限</h4>
+                            <p class="text-gray-700">
+                                公开数据可自由浏览，详细生长记录和检测报告需要认证会员权限。
+                                <a href="membership.html" class="text-[#7CB342] font-semibold ml-2">了解会员权益 →</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // 咖啡树数据
+        const coffeeTrees = [
+            {
+                id: 'ST-2026-YN-038',
+                name: 'Misty Jasmine',
+                region: '云南，中国',
+                variety: 'Typica',
+                age: 8,
+                altitude: 1600,
+                flavorProfile: ['茉莉花', '柑橘', '蜂蜜'],
+                status: 'pending',
+                lastHarvest: '2025-12',
+                description: '生长在云南高海拔山区的Typica品种，以清新的茉莉花香气和柑橘酸度著称。'
+            },
+            {
+                id: 'ST-2026-ET-127',
+                name: 'Blue Mountain Heritage',
+                region: '耶加雪菲，埃塞俄比亚',
+                variety: 'Heirloom',
+                age: 12,
+                altitude: 2100,
+                flavorProfile: ['蓝莓', '黑巧克力', '香料'],
+                status: 'certified',
+                lastHarvest: '2025-11',
+                description: '埃塞俄比亚原生种，具有浓郁的蓝莓风味和复杂的香料尾韵。'
+            },
+            {
+                id: 'ST-2026-CO-042',
+                name: 'Andean Sunrise',
+                region: 'Huila，哥伦比亚',
+                variety: 'Caturra',
+                age: 6,
+                altitude: 1800,
+                flavorProfile: ['焦糖', '坚果', '红色水果'],
+                status: 'certified',
+                lastHarvest: '2025-10',
+                description: '哥伦比亚安第斯山脉的Caturra品种，平衡的焦糖甜感和坚果风味。'
+            },
+            {
+                id: 'ST-2026-BR-089',
+                name: 'Cerrado Gold',
+                region: 'Cerrado，巴西',
+                variety: 'Bourbon',
+                age: 10,
+                altitude: 1100,
+                flavorProfile: ['牛奶巧克力', '坚果', '焦糖'],
+                status: 'monitoring',
+                lastHarvest: '2025-09',
+                description: '巴西Cerrado产区的Bourbon品种，经典的牛奶巧克力和坚果风味。'
+            },
+            {
+                id: 'ST-2026-CR-015',
+                name: 'Tarrazú Cloud',
+                region: 'Tarrazú，哥斯达黎加',
+                variety: 'Catuai',
+                age: 7,
+                altitude: 1900,
+                flavorProfile: ['苹果', '蜂蜜', '香料'],
+                status: 'certified',
+                lastHarvest: '2025-12',
+                description: '哥斯达黎加Tarrazú高海拔产区的Catuai品种，明亮的苹果酸度和蜂蜜甜感。'
+            },
+            {
+                id: 'ST-2026-GT-063',
+                name: 'Antigua Volcano',
+                region: 'Antigua，危地马拉',
+                variety: 'Bourbon',
+                age: 9,
+                altitude: 1700,
+                flavorProfile: ['可可', '香料', '柑橘'],
+                status: 'pending',
+                lastHarvest: '2025-11',
+                description: '危地马拉Antigua火山区的Bourbon品种，丰富的可可风味和香料复杂度。'
+            }
+        ];
+
+        // 状态映射
+        const statusMap = {
+            'certified': { text: '已认证', class: 'status-certified' },
+            'pending': { text: '认证中', class: 'status-pending' },
+            'monitoring': { text: '监测中', class: 'status-monitoring' }
+        };
+
+        // 渲染咖啡树卡片
+        function renderTreeCards(trees) {
+            const container = document.getElementById('tree-list');
+            container.innerHTML = '';
+            
+            trees.forEach(tree => {
+                const status = statusMap[tree.status];
+                
+                const card = document.createElement('div');
+                card.className = 'tree-card bg-white rounded-xl p-6';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="font-mono font-bold text-gray-900 text-lg">${tree.id}</div>
+                            <div class="text-2xl font-bold text-gray-900 mt-1">${tree.name}</div>
+                        </div>
+                        <span class="status-badge ${status.class}">${status.text}</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>${tree.region}</span>
+                        </div>
+                        <div class="flex items-center text-gray-600 mb-2">
+                            <i class="fas fa-seedling mr-2"></i>
+                            <span>${tree.variety} · ${tree.age}年树龄</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-mountain mr-2"></i>
+                            <span>${tree.altitude}m 海拔</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="text-sm text-gray-500 mb-2">风味特征</div>
+                        <div class="flex flex-wrap">
+                            ${tree.flavorProfile.map(flavor => 
+                                `<span class="flavor-tag">${flavor}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 text-sm mb-4">${tree.description}</p>
+                    
+                    <div class="flex justify-between items-center text-sm text-gray-500">
+                        <span>最后采收: ${tree.lastHarvest}</span>
+                        <button class="text-[#7CB342] font-semibold hover:text-[#5D4037]">
+                            查看详情 <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // 搜索和筛选功能
+        function filterTrees() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const statusFilter = document.getElementById('status-filter').value;
+            const regionFilter = document.getElementById('region-filter').value;
+            
+            const filtered = coffeeTrees.filter(tree => {
+                const matchesSearch = 
+                    tree.id.toLowerCase().includes(searchTerm) ||
+                    tree.name.toLowerCase().includes(searchTerm) ||
+                    tree.region.toLowerCase().includes(searchTerm);
+                
+                const matchesStatus = !statusFilter || tree.status === statusFilter;
+                const matchesRegion = !regionFilter || tree.region.toLowerCase().includes(regionFilter);
+                
+                return matchesSearch && matchesStatus && matchesRegion;
+            });
+            
+            renderTreeCards(filtered);
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTreeCards(coffeeTrees);
+            
+            // 绑定事件
+            document.getElementById('search-input').addEventListener('input', filterTrees);
+            document.getElementById('status-filter').addEventListener('change', filterTrees);
+            document.getElementById('region-filter').addEventListener('change', filterTrees);
+            
+            // 分页按钮
+            document.getElementById('prev-page').addEventListener('click',

@@ -3,35 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>uCERTIFICATION - Single Tree Lot</title>
+    <title>认证流程 - Single Tree Lot</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: #7CB342;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .process-step:nth-child(1)::before { content: '1'; }
+        .process-step:nth-child(2)::before { content: '2'; }
+        .process-step:nth-child(3)::before { content: '3'; }
+        .process-step:nth-child(4)::before { content: '4'; }
+        
+        .requirement-card {
+            border-left: 4px solid #7CB342;
+            padding-left: 1rem;
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
+    <!-- 导航 -->
     <nav class="bg-white shadow">
         <div class="container py-4">
-            <a href="index.html" class="inline-flex items-center text-[#5D4037] hover:text-[#7CB342]">
-                <i class="fas fa-arrow-left mr-2"></i>
-                返回首页
-            </a>
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="inline-flex items-center text-[#5D4037] hover:text-[#7CB342]">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    返回首页
+                </a>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-certificate mr-1"></i>
+                    认证流程
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="container py-12">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">uCERTIFICATION</h1>
-            <p class="text-xl text-gray-600">建设中，即将上线</p>
+    <!-- 页面标题 -->
+    <section class="gradient-primary text-white">
+        <div class="container py-12">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Single Tree Lot 认证流程</h1>
+                <p class="text-xl max-w-3xl mx-auto">
+                    加入全球单株咖啡标准体系，获得行业认可的Single Tree Lot认证。
+                </p>
+            </div>
         </div>
-        
-        <div class="bg-gray-50 rounded-xl p-8 text-center">
-            <i class="fas fa-tools text-5xl text-gray-400 mb-6"></i>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">页面正在建设中</h2>
-            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-                此页面正在积极开发中，即将为您提供完整功能。
-                预计上线时间：2026年4月20日
-            </p>
-            <a href="index.html" class="btn btn-primary">返回首页</a>
+    </section>
+
+    <!-- 认证流程步骤 -->
+    <section class="py-12 bg-white">
+        <div class="container">
+            <h2 class="text-3xl font-bold text-center mb-12">四步完成认证</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-[#7CB342] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">申请提交</h3>
+                    <p class="text-gray-600">在线填写申请表，提交咖啡树基本信息</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i class="fas fa-clock mr-1"></i>
+                        预计时间: 15分钟
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-[#7CB342] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">文档审核</h3>
+                    <p class="text-gray-600">标准委员会审核申请材料，确认符合性</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i class="fas fa-clock mr-1"></i>
+                        预计时间: 3-5个工作日
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-[#7CB342] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">现场审核</h3>
+                    <p class="text-gray-600">专家团队现场考察，验证数据和实践</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i class="fas fa-clock mr-1"></i>
+                        预计时间: 1-2周
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-[#7CB342] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">认证颁发</h3>
+                    <p class="text-gray-600">通过审核，颁发认证证书和树编号</p>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i class="fas fa-clock mr-1"></i>
+                        预计时间: 2-3个工作日
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
-</body>
-</html>
+    </section>
+
+    <!-- 申请资格 -->
+    <section class="py-12 bg-gray-50">
+        <div class="container">
+            <h2 class="text-3xl font-bold text-center mb-12">申请资格要求</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-[#5D4037]">基本要求</h3>
+                    <div class="space-y-6">
+                        <div class="requirement-card">
+                            <h4 class="font-bold text-gray-900 mb-2">咖啡树要求</h4>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• 单株咖啡树，可明确识别</li>
+                                <li>• 树龄 ≥ 3年</li>
+                                <li>• 健康状况良好</li>
+                                <li>• 有明确的地理位置</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="requirement-card">
+                            <h4 class="font-bold text-gray-900 mb-2">种植者要求</h4>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• 合法种植权证明</li>
+                                <li>• 基本的种植记录</li>
+                                <li>• 愿意配合现场审核</li>
+                                <li>• 承诺遵守标准要求</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-[#5D4037]">文档要求</h3>
+                    <div class="space-y-6">
+                        <div class="requirement-card">
+                            <h4 class="font-bold text-gray-900 mb-2">必需文档</h4>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• 地理位置坐标（GPS）</li>
+                                <li>• 咖啡树照片（多角度）</li>
+                                <li>• 种植记录（如有）</li>
+                                <li>• 土地权属证明</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="requirement-card">
+                            <h4 class="font-bold text-gray-900 mb-2">可选文档</h4>
+                            <ul class="text-gray-700 space-y-1">
+                                <li>• 土壤检测报告</li>
+                                <li>• 水质检测报告</li>
+                                <li>• 往年产量记录</li>
+                                <li>• 杯测评分记录</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 在线申请表单 -->
+    <section class="py-12 bg-white" id="application-form">
+        <div class="container">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12">在线申请</h2>
+                
+                <!-- 表单步骤指示器 -->
+                <div class="flex justify-between mb-8 relative">
+                    <div class="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+                    
+                    <div class="text-center z-10">
+                        <div class="w-12 h-12 bg-[#7CB342] text-white rounded-full flex items-center justify-center mx-auto mb-2">
+                            1
+                        </div>
+                        <div class="text-sm font-medium">基本信息</div>
+                    </div>
+                    
+                    <div class="text-center z-10">
+                        <div class="w-12 h-12 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            2
+                        </div>
+                        <div class="text-sm text-gray-500">咖啡树信息</div>
+                    </div>
+                    
+                    <div class="text-center z-10">
+                        <div class="w-12 h-12 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            3
+                        </div>
+                        <div class="text-sm text-gray-500">文档上传</div>
+                    </div>
+                    
+                    <div class="text-center z-10">
+                        <div class="w-12 h-12 bg-gray-200 text-gray-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            4
+                        </div>
+                        <div class="text-sm text-gray-500">确认提交</div>
+                    </div>
+                </div>
+                
+                <!-- 表单内容 -->
+                <form id="certification-form" class="bg-gray-50 rounded-xl p-8">
+                    <!-- 步骤1: 基本信息 -->
+                    <div class="form-step active" id="step1">
+                        <h3 class="text-xl font-bold mb-6">申请者基本信息</h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group">
+                                <label class="form-label">姓名</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">邮箱</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group">
+                                <label class="form-label">联系电话</label>
+                                <input type="tel" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">所在国家</label>
+                                <select class="form-control" required>
+                                    <option value="">请选择国家</option>
+                                    <option value="china">中国</option>
+                                    <option value="ethiopia">埃塞俄比亚</option>
+                                    <option value="colombia">哥伦比亚</option>
+                                    <option value="brazil">巴西</option>
+                                    <option value="other">其他国家</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-6">
+                            <label class="form-label">种植园/农场名称</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <div></div>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                                下一步 <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤2: 咖啡树信息 -->
+                    <div class="form-step" id="step2">
+                        <h3 class="text-xl font-bold mb-6">咖啡树信息</h3>
+                        
+                        <div class="form-group mb-6">
+                            <label class="form-label">咖啡树数量</label>
+                            <input type="number" class="form-control" min="1" value="1" required>
+                            <p class="text-sm text-gray-500 mt-1">首次申请建议从单棵树开始</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group">
+                                <label class="form-label">主要品种</label>
+                                <select class="form-control" required>
+                                    <option value="">请选择品种</option>
+                                    <option value="typica">Typica</option>
+                                    <option value="bourbon">Bourbon</option>
+                                    <option value="caturra">Caturra</option>
+                                    <option value="catuai">Catuai</option>
+                                    <option value="heirloom">Heirloom (原生种)</option>
+                                    <option value="other">其他品种</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">平均树龄 (年)</label>
+                                <input type="number" class="form-control" min="1" required>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group">
+                                <label class="form-label">海拔高度 (米)</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">年产量 (公斤)</label>
+                                <input type="number" class="form-control" step="0.1">
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(1)">
+                                <i class="fas fa-arrow-left mr-2"></i> 上一步
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(3)">
+                                下一步 <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤3: 文档上传 -->
+                    <div class="form-step" id="step3">
+                        <h3 class="text-xl font-bold mb-6">文档上传</h3>
+                        
+                        <div class="space-y-6 mb-6">
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                <h4 class="font-bold text-gray-900 mb-2">地理位置坐标文件</h4>
+                                <p class="text-gray-600 mb-4">上传GPS坐标文件或截图 (KML, GPX, 图片)</p>
+                                <input type="file" class="hidden" id="gps-file">
+                                <label for="gps-file" class="btn btn-secondary cursor-pointer">
+                                    <i class="fas fa-upload mr-2"></i> 选择文件
+                                </label>
+                            </div>
+                            
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                                <i class="fas fa-camera text-4xl text-gray-400 mb-4"></i>
+                                <h4 class="font-bold text-gray-900 mb-2">咖啡树照片</h4>
+                                <p class="text-gray-600 mb-4">上传多角度咖啡树照片 (至少3张)</p>
+                                <input type="file" class="hidden" id="tree-photos" multiple accept="image/*">
+                                <label for="tree-photos" class="btn btn-secondary cursor-pointer">
+                                    <i class="fas fa-upload mr-2"></i> 选择照片
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
+                                <i class="fas fa-arrow-left mr-2"></i> 上一步
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(4)">
+                                下一步 <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤4: 确认提交 -->
+                    <div class="form-step" id="step4">
+                        <h3 class="text-xl font-bold mb-6">确认提交</h3>
+                        
+                        <div class="bg-white rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-gray-900 mb-4">申请信息摘要</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">申请者:</span>
+                                    <span class="font-medium" id="summary-name">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">

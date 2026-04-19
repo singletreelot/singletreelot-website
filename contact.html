@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>uCONTACT - Single Tree Lot</title>
+    <title>联系我们 - Single Tree Lot</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -19,19 +19,125 @@
 
     <main class="container py-12">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">uCONTACT</h1>
-            <p class="text-xl text-gray-600">建设中，即将上线</p>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">联系我们</h1>
+            <p class="text-xl text-gray-600">我们期待听到您的消息</p>
         </div>
         
-        <div class="bg-gray-50 rounded-xl p-8 text-center">
-            <i class="fas fa-tools text-5xl text-gray-400 mb-6"></i>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">页面正在建设中</h2>
-            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-                此页面正在积极开发中，即将为您提供完整功能。
-                预计上线时间：2026年4月20日
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">发送消息</h2>
+                
+                <form id="contact-form">
+                    <div class="form-group mb-6">
+                        <label class="form-label">姓名</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group mb-6">
+                        <label class="form-label">邮箱</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group mb-6">
+                        <label class="form-label">主题</label>
+                        <select class="form-control" required>
+                            <option value="">请选择主题</option>
+                            <option value="certification">认证咨询</option>
+                            <option value="partnership">合作机会</option>
+                            <option value="technical">技术支持</option>
+                            <option value="other">其他问题</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group mb-6">
+                        <label class="form-label">消息内容</label>
+                        <textarea class="form-control" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-full">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        发送消息
+                    </button>
+                </form>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">联系信息</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-[#7CB342] text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">邮箱</h3>
+                                <p class="text-gray-700">contact@singletreelot.com</p>
+                                <p class="text-sm text-gray-500 mt-1">一般咨询: 24小时内回复</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-[#7CB342] text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">工作时间</h3>
+                                <p class="text-gray-700">周一至周五: 9:00 - 18:00 (GMT+8)</p>
+                                <p class="text-sm text-gray-500 mt-1">周末和节假日可能延迟回复</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-globe text-[#7CB342] text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">办公地址</h3>
+                                <p class="text-gray-700">上海市黄浦区</p>
+                                <p class="text-sm text-gray-500 mt-1">具体地址在预约后提供</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="font-bold text-gray-900 mb-4">常见问题</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="certification.html" class="text-[#7CB342] hover:text-[#5D4037]">
+                                <i class="fas fa-question-circle mr-2"></i>
+                                认证流程需要多长时间？
+                            </a>
+                        </li>
+                        <li>
+                            <a href="standard.html" class="text-[#7CB342] hover:text-[#5D4037]">
+                                <i class="fas fa-question-circle mr-2"></i>
+                                标准文档在哪里下载？
+                            </a>
+                        </li>
+                        <li>
+                            <a href="membership.html" class="text-[#7CB342] hover:text-[#5D4037]">
+                                <i class="fas fa-question-circle mr-2"></i>
+                                如何成为会员？
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-[#7CB342]/10 border border-[#7CB342]/20 rounded-xl p-6 text-center">
+            <h3 class="font-bold text-gray-900 mb-2">紧急联系</h3>
+            <p class="text-gray-700 mb-4">
+                如有紧急情况，请直接致电: <span class="font-bold">+86 21 1234 5678</span>
             </p>
-            <a href="index.html" class="btn btn-primary">返回首页</a>
+            <p class="text-sm text-gray-600">
+                此电话仅用于紧急事务，一般咨询请使用邮箱或在线表单。
+            </p>
         </div>
     </main>
+    
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢您的消息！我们会在24小时内回复。');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
