@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Tree Lot - 全球单株咖啡行业标准</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-dark: #5D4037;    /* 深咖色 - 咖啡豆 */
+            --primary-main: #7CB342;    /* 绿色 - 咖啡叶 */
+            --primary-light: #AED581;   /* 浅绿色 */
+            --secondary-dark: #8D6E63;  /* 浅咖色 */
+            --secondary-light: #D7CCC8; /* 浅灰咖色 */
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --background: #F9F9F9;
+        }
+        
+        .gradient-primary {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-main) 100%);
+        }
+        
+        .gradient-secondary {
+            background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-light) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-main);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--primary-main);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(93, 64, 55, 0.2);
+        }
+        
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="text-3xl text-[#5D4037]">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Single Tree Lot</h1>
+                        <p class="text-sm text-gray-500">全球单株咖啡行业标准</p>
+                    </div>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 font-medium hover:text-[#5D4037]">首页</a>
+                    <a href="#standard" class="nav-link text-gray-700 font-medium hover:text-[#5D4037]">标准体系</a>
+                    <a href="#database" class="nav-link text-gray-700 font-medium hover:text-[#5D4037]">咖啡树数据库</a>
+                    <a href="#certification" class="nav-link text-gray-700 font-medium hover:text-[#5D4037]">认证流程</a>
+                    <a href="#about" class="nav-link text-gray-700 font-medium hover:text-[#5D4037]">关于我们</a>
+                    <a href="#contact" class="nav-link text-gray-700 font-medium hover:text-[#5D4037]">联系我们</a>
+                    
+                    <!-- 语言切换 -->
+                    <div class="flex items-center space-x-2 ml-4">
+                        <button class="px-3 py-1 bg-[#7CB342] text-white rounded-full text-sm font-medium">
+                            <i class="fas fa-language mr-1"></i> 中文
+                        </button>
+                        <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-full text-sm font-medium">
+                            EN
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 移动菜单按钮 -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- 移动导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden py-4 border-t border-gray-200">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-700 hover:text-[#5D4037] font-medium">首页</a>
+                    <a href="#standard" class="text-gray-700 hover:text-[#5D4037] font-medium">标准体系</a>
+                    <a href="#database" class="text-gray-700 hover:text-[#5D4037] font-medium">咖啡树数据库</a>
+                    <a href="#certification" class="text-gray-700 hover:text-[#5D4037] font-medium">认证流程</a>
+                    <a href="#about" class="text-gray-700 hover:text-[#5D4037] font-medium">关于我们</a>
+                    <a href="#contact" class="text-gray-700 hover:text-[#5D4037] font-medium">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页 Hero -->
+    <section id="home" class="gradient-primary text-white">
+        <div class="container section-padding">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">
+                    重新定义咖啡品质标准
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    每杯咖啡，都来自一棵有名字的树。<br>
+                    Single Tree Lot - 全球首个单棵树追溯标准。
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <a href="#standard" class="btn-primary inline-flex items-center justify-center">
+                        <i class="fas fa-book mr-2"></i>
+                        探索标准体系
+                    </a>
+                    <a href="#database" class="bg-white/10 backdrop-blur-sm text-white border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white/20 transition inline-flex items-center justify-center">
+                        <i class="fas fa-database mr-2"></i>
+                        浏览咖啡树数据库
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心价值 -->
+    <section class="bg-white section-padding">
+        <div class="container">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Single Tree Lot 核心价值</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    建立透明、可追溯、公平的咖啡供应链，为种植者和消费者创造真正价值。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 价值1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-[#7CB342]/10 rounded-xl flex items-center justify-center text-2xl text-[#7CB342] mb-6">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">完全透明追溯</h3>
+                    <p class="text-gray-600 mb-6">
+                        从单棵咖啡树到你的杯子，每一步都可追溯。知道你的咖啡来自哪棵树，生长在哪里，如何处理。
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-[#7CB342] mr-2"></i>
+                            树级追溯编号系统
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-[#7CB342] mr-2"></i>
+                            完整生长环境记录
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-[#7CB342] mr-2"></i>
+                            处理过程透明公开
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 价值2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-[#7CB342]/10 rounded-xl flex items-center justify-center text-2xl text-[#7CB342] mb-6">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">独特风味体验</h3>
+                    <p class="text-gray-600 mb-6">
+                        每棵咖啡树都有其独特的风味特征。体验真正独特的咖啡风味，发现咖啡的无限可能。
+                    </p>
+                    <div class="mt-4">
+                        <div class="text-sm text-gray-500 mb-2">数据库统计</div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="bg-white p-3 rounded-lg text-center border border-gray-200">
+                                <div class="text-lg font-bold text-[#5D4037]">1,247</div>
+                                <div class="text-xs text-gray-600">咖啡树</div>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg text-center border border-gray-200">
+                                <div class="text-lg font-bold text-[#5D4037]">18</div>
+                                <div class="text-xs text-gray-600">产地国家</div>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg text-center border border-gray-200">
+                                <div class="text-lg font-bold text-[#5D4037]">42</div>
+                                <div class="text-xs text-gray-600">风味特征</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 价值3 -->
+                <div class="bg-gray-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-[#7CB342]/10 rounded-xl flex items-center justify-center text-2xl text-[#7CB342] mb-6">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">公平可持续</h3>
+                    <p class="text-gray-600 mb-6">
+                        保护咖啡种植者权益，推动可持续发展，为消费者提供真正有价值的咖啡体验。
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-[#7CB342] mr-2"></i>
+                            种植者合理回报保障
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-[#7CB342] mr-2"></i>
+                            生态友好种植实践
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-[#7CB342] mr-2"></i>
+                            社区支持发展计划
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 标准体系预览 -->
+    <section id="standard" class="bg-gray-100 section-padding">
+        <div class="container">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">标准体系</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    完整的Single Tree Lot标准体系，涵盖追溯、品质、可持续性全方面要求。
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 追溯标准 -->
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-8 bg-[#5D4037] rounded mr-3"></div>
+                            <h3 class="text-xl font-bold text-gray-900">追溯标准</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-2 mr-3"></i>
+                                <div>
+                                    <div class="font-semibold">树编号系统</div>
+                                    <div class="text-sm text-gray-600">ST-YYYY-REGION-NNN 唯一编号</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-2 mr-3"></i>
+                                <div>
+                                    <div class="font-semibold">地理位置记录</div>
+                                    <div class="text-sm text-gray-600">经纬度、海拔、土壤类型</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 品质标准 -->
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-8 bg-[#7CB342] rounded mr-3"></div>
+                            <h3 class="text-xl font-bold text-gray-900">品质标准</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-2 mr-3"></i>
+                                <div>
+                                    <div class="font-semibold">杯测评分体系</div>
+                                    <div class="text-sm text-gray-600">SCA标准 + 风味特征描述</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-2 mr-3"></i>
+                                <div>
+                                    <div class="font-semibold">缺陷检测标准</div>
+                                    <div class="text-sm text-gray-600">一级瑕疵率＜5%，无二级瑕疵</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 可持续标准 -->
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-8 bg-[#AED581] rounded mr-3"></div>
+                            <h3 class="text-xl font-bold text-gray-900">可持续标准</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-gray-400 text-xs mt-2 mr-3"></i>
+                                <div>
+                                    <div class="font-semibold">生态种植实践</div>
+                                    <div class="text-sm text-gray-600">有机肥料，生物防治</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-gray-400 text-xs mt-2 mr-3"></i>
+                                <div>
+                                    <div class="font-semibold">公平贸易认证</div>
+                                    <div class="text-sm text-gray-600">种植者合理回报保障</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-12 p-6 bg-[#7CB342]/10 border border-[#7CB342]/20 rounded-xl">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-[#5D4037] mb-2">
+                                <i class="fas fa-download mr-2"></i>
+                                下载完整标准文档
+                            </h4>
+                            <p class="text-gray-700">获取完整的 Single Tree Lot 标准文档包</p>
+                        </div>
+                        <button class="btn-primary mt
