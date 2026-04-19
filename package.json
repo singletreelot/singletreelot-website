@@ -1,0 +1,33 @@
+{
+  "name": "singletreelot-full",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Single Tree Lot - Complete multilingual website",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "deploy": "npm run build && npm run export"
+  },
+  "dependencies": {
+    "next": "13.5.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "next-i18next": "^13.2.0",
+    "i18next": "^23.0.0",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^13.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/singletreelot/singletreelot-website"
+  },
+  "author": "Single Tree Lot",
+  "license": "MIT"
+}

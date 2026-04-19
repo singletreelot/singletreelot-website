@@ -1,0 +1,20 @@
+{
+  "site": {
+    "title": "Single Tree Lot",
+    "description": "全球单株咖啡行业标准",
+    "tagline": "每杯咖啡，都来自一棵有名字的树"
+  },
+  "nav": {
+    "home": "首页",
+    "standard": "标准文档",
+    "database": "咖啡树数据库",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "title": "重新定义咖啡品质标准",
+    "subtitle": "每杯咖啡，都来自一棵有名字的树。Single Tree Lot - 全球首个单棵树追溯标准。",
+    "cta_standard": "查看标准文档",
+    "cta_database": "探索咖啡树数据库"
+  }
+}
