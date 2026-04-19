@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Tree Lot - 行业标准网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #1B5E20 0%, #388E3C 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航 -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="text-3xl text-emerald-600">🌳</div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Single Tree Lot</h1>
+                        <p class="text-sm text-gray-600">全球单株咖啡行业标准</p>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-500">v1.0.0 · 在线</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Single Tree Lot 标准</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
+                每杯咖啡，都来自一棵有名字的树。<br>
+                全球首个单棵树追溯标准。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#standard" class="bg-white text-emerald-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition shadow-lg">
+                    📜 查看标准文档
+                </a>
+                <a href="#database" class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition">
+                    🌱 探索数据库
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心价值 -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">为什么选择 Single Tree Lot？</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow card-hover">
+                    <div class="text-4xl mb-4">🔍</div>
+                    <h3 class="text-xl font-bold mb-3">完全透明追溯</h3>
+                    <p class="text-gray-600">从单棵咖啡树到你的杯子，全程可追溯。</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow card-hover">
+                    <div class="text-4xl mb-4">🌱</div>
+                    <h3 class="text-xl font-bold mb-3">独特风味体验</h3>
+                    <p class="text-gray-600">每棵树都有其独特的风味特征。</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow card-hover">
+                    <div class="text-4xl mb-4">🤝</div>
+                    <h3 class="text-xl font-bold mb-3">公平可持续</h3>
+                    <p class="text-gray-600">保护种植者权益，推动可持续发展。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 标准文档 -->
+    <section id="standard" class="py-20 bg-gray-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-3xl font-bold mb-6">标准文档</h2>
+                <p class="text-gray-600 mb-8">Single Tree Lot 标准体系包含完整的追溯要求、品质评价和认证流程。</p>
+                
+                <div class="space-y-4">
+                    <div class="border-l-4 border-emerald-500 pl-4 py-2">
+                        <h4 class="font-bold">追溯要求</h4>
+                        <p class="text-sm text-gray-600">树编号、地理位置、种植信息</p>
+                    </div>
+                    <div class="border-l-4 border-amber-500 pl-4 py-2">
+                        <h4 class="font-bold">品质评价</h4>
+                        <p class="text-sm text-gray-600">风味特征、杯测评分、缺陷检测</p>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold">认证流程</h4>
+                        <p class="text-sm text-gray-600">审核、认证、年度复审</p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-6 bg-emerald-50 rounded-xl">
+                    <h4 class="font-bold text-emerald-900 mb-2">📥 下载完整标准</h4>
+                    <p class="text-gray-700">获取完整的 Single Tree Lot 标准文档。</p>
+                    <button class="mt-4 bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition">
+                        下载PDF版本
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center mb-6">
+                <div class="text-3xl mr-3">🌳</div>
+                <h3 class="text-2xl font-bold">Single Tree Lot</h3>
+            </div>
+            <p class="text-gray-400 mb-4">全球单株咖啡行业标准</p>
+            <p class="text-gray-500 text-sm">© 2026 Single Tree Lot Standard · 部署时间: 2026-04-19 22:00</p>
+            <p class="text-gray-500 text-sm mt-2">网站状态: <span class="text-green-400">● 在线</span> | 版本: v1.0.0-direct</p>
+        </div>
+    </footer>
+</body>
+</html>
